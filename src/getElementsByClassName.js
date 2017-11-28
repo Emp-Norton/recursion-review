@@ -1,17 +1,22 @@
 
 var getElementsByClassName = function(className) {
   var results = [];
-  var elements = document.all;
+  var elements = document.body;
   
   var checkNode = function(node) {
-    if (node.className.includes(className)) {
-      results.push(node);
+    if (node.classList) {
+      if (node.classList.contains(className)) {
+        results.push(node);
+      }
+    }
+    if (node.childNodes) {
+      for (var idx = 0; idx < node.childNodes.length; idx++) {
+        checkNode(node.childNodes[idx]);
+      }
     }
   };
 
-  for (var idx = 0; idx < elements.length; idx++) {
-    checkNode(elements[idx]);
-  }
+  checkNode(elements);
   
   return results;
 };
