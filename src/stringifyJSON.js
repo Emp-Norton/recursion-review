@@ -11,7 +11,6 @@ var stringifyJSON = function(obj) {
     return 'null';
   } 
   
-
   if (Array.isArray(obj)) {
     var stringifiedChildren = [];
     for (var i = 0; i < obj.length; i++) {
@@ -24,7 +23,7 @@ var stringifyJSON = function(obj) {
     var stringifiedChildren = [];
     for (var key in obj) {
       var value = stringifyJSON(obj[key]);
-      if (typeof obj[key] !== "function" && typeof obj[key] !== "undefined") {
+      if (typeof obj[key] !== 'function' && typeof obj[key] !== 'undefined') {
         stringifiedChildren.push(`"${key}":${value}`);
       }
     }
